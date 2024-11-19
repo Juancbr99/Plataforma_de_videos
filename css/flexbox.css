@@ -1,0 +1,164 @@
+/*cabecera*/
+.cabecera__container{ /*clase que contiene todos*los elementos de la cabecera*/
+    display: flex;
+    justify-content: space-between; /*hace que sea responsivo y ademas hace que halla espacio entre los elementos del container espacio entre el logo, la barra de busqueda y los iconos */
+    align-items: center; /*centra el contenido al medio del container*/
+    position: fixed; /*para que la cabecera quede fija cuando desendemos en la pagina*/
+    top: 0; /*en que eje esta fija */
+}
+
+.cabecera__buscar__item{
+    display: none; /*desaperece la barra de busqueda*/
+}
+
+/*seccion lateral*/
+.menu__container{
+    position: fixed;/*Edita la posicion y se autocompleta*/
+    bottom: 0%;/*coloca en la parte inferior el menu lateral*/
+    height: 75px;/*el contenedor se redujo*/
+    width: 100%; /*abaraca el top el ancho del body*/
+}
+
+/*elemento padre de las listas*/
+.menu__lista{
+    display: flex; /*los elementos uno al lado del otro*/
+    justify-content: space-around; /*espacio entre cada uno de los elemntos*/
+    height: 100%;
+}
+
+/*elementos hijos de las listas (li)*/
+.menu__lista li { 
+    align-self: center;
+}
+
+/*seccion que oculta listas y trabaja con elementos hermanos*//*oculto listas para el contenedor inferior en dispositivos menores a 834px*/
+.menu__lista:nth-child(2),
+.menu__lista:nth-child(3),
+.menu__lista:nth-child(4){
+    display: none;
+}
+
+/* clase que contiene los elementos hijos (items del menu listas)*/
+.menu__itens{
+    display: flex;
+    flex-direction: column;/*pone el icono arriba y el texto abajo*/
+    gap: 5px;/*espacio entre el icono y el texto*/
+
+}
+
+
+/*seccion superior debajo de la cabecera "todo, Debates, En Vivo"*/
+.superior__seccion__container{
+    display: flex;
+    align-items: center; /*elementos en el centro del contenedor*/
+    white-space: nowrap; /*aliena los elementos y no wrap para que no se quiebre el texto dentro del elemento */
+    overflow: scroll; /*incorpora una barra de deslizamiento*/
+    gap: 15px; /*genera espacios entre los elementos sin hacerlos uno por cada uno, manera mas eficiente*/
+}
+
+/*seccion videos*/
+.videos__item{
+    height: 303px;/*ancho del cuadro del video*/
+    width: 280px;/* alto del cuadro del video*/
+    flex-grow: 1;/*distribuye los elementos dentro del container, indica el tamaño de cada video*/
+}
+
+.videos__container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* da el espacio entre los videos */
+}
+
+.descripcion-video{
+    margin-top: 1rem;
+    display: flex;
+    align-items: start;
+}
+
+/* footer*/
+.rodapie__container{
+    display: flex; /* Activa el flexbox en esta parte de la pag, cambio los elemnetos del footer de comportamiento, de columnas a filas*/
+    /*flex-direction: column;*/
+    /*flex-wrap: wrap; /*quiebran los elemntos de colomnas o filas en varias partes para que se ajuten dentro del contenedor*/
+    flex-flow: column wrap; /*realiza lo mismo que las dos lineas anteriores, manera de mejorar y hacer mas corto el codigo*/
+}
+
+/*@media es una regla que contiene condiciones para aplicacion de estilos especificos,muestran u ocultan lineas de codigo dependiendo del cumplimiento de las condiciones */
+/*aparece y desaperece la barra de busqueda, aparece cuando almenos hay 834px de ancho, si no aparece es por que hay menos de 834px*/
+@media(min-width:834px){ /*solo se cumplira la condicion cuando almenos los dispositivos tengan 834px de ancho,se colocan dentro del () los puntos de ruptura, los cules ajustan el visual de la pag en los diferentes dispositivos*/
+
+    /*cabecera*/
+    .cabecera__buscar__item{
+        display: block; /*bloquea la barra de busqueda en su posicion cuando se cumpla la condicion*/
+    }
+
+    /*rodapie*/
+    .rodapie__container{
+        justify-content: space-between;/*espacio entre las columnas de informacion en el footer y se rije por la condicone de @media*/
+    }
+
+    /*Ubica el container al lado izquierdo*/
+    .menu__container{
+    top: 80px;/*alto del container*/
+    left: 0; /*margen izquierda 0*/
+    width: 74px; /*ancho del container lateral*/
+    height: auto;/*largo del contenedor*/
+    }
+
+    /*Ubica los items de la lista en el lado izquierdo como esta el container*/
+    .menu__lista{
+    flex-direction: column;/*coloca los items del contenedor en columna*/
+    padding-top: 15px;/*espacio entre el contendio del contenedor y el borde superior del mismo*/
+    justify-content: flex-start; /* alinea los items a lo largo del eje horizontal*/
+    gap: 83px; /*espacio entre los items del menu lateral*/
+    }    
+}
+
+/*Condicion para dispositivos de mas de 1440 px */
+@media(min-width:1440px){
+
+    .menu__container{
+    width: 239px;/*ancho del container lateral*/
+    overflow: scroll;/* barra de desplazamineto*/
+    }
+
+    /*seccion que oculta listas y trabaja con elementos hermanos*//* ahora muestra las listas que se ocultaron anteriormente*/
+    .menu__lista:nth-child(2),
+    .menu__lista:nth-child(3),
+    .menu__lista:nth-child(4){
+    display: flex;
+    }
+
+    .menu__lista{
+    height: auto;
+    padding: 20px 17px 20px 15px;/*ajuste del contenedor em sus 4 lados */
+    gap: 15px;/*espacio entre los items*/
+    }
+
+    .menu__lista:nth-child(3){
+        flex-direction: column-reverse; /*inverte el orden de las listas*/
+
+
+    }
+
+    .menu__itens{
+        flex-direction: row; /*ubica el icono al lado del texto*/
+        gap: 15px;/*espacio entre el texto y el item*/
+        align-items: center;/* centro los items dentro del container*/
+    }
+
+    /*orden de las listas */
+    .videojuegos{
+        order:3;
+    }
+
+    .peliculas{
+        order:2;
+    }
+
+    .premium{
+        order:1;
+    }
+}
+
+
